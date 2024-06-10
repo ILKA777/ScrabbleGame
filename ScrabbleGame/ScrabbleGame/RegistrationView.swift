@@ -33,15 +33,6 @@ struct RegistrationView: View {
                 .padding([.horizontal], 24)
                 .offset(y: -120)
             
-            TextField("Введите почту", text: $viewModel.email)
-                .padding()
-                .frame(width: 350, height: 50)
-                .textFieldStyle(PlainTextFieldStyle())
-                .padding([.horizontal], 4)
-                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray))
-                .padding([.horizontal], 24)
-                .offset(y: -120)
-            
             // Поле ввода пароля
             ZStack(alignment: .trailing) {
                 if isPasswordVisible {

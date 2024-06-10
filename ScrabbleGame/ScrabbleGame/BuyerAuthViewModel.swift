@@ -13,15 +13,14 @@ class BuyerAuthViewModel: ObservableObject {
     @Published var isAuthSuccessful = false
     
     func authUser() {
-        guard let url = URL(string: "http://localhost:8090/login") else {
+        guard let url = URL(string: "\(Constants.serverURL)/auth/login") else {
             print("Invalid URL")
             return
         }
         
         let parameters = [
-            "username": userName,
-            "password": password,
-            "role": "CLIENT"
+            "nickName": userName,
+            "password": password
         ]
         
         guard let jsonData = try? JSONSerialization.data(withJSONObject: parameters) else {
@@ -32,6 +31,7 @@ class BuyerAuthViewModel: ObservableObject {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(Constants.serverApiKey, forHTTPHeaderField: "ApiKey")
         request.httpBody = jsonData
         
         URLSession.shared.dataTask(with: request) { data, response, error in
@@ -47,7 +47,6 @@ class BuyerAuthViewModel: ObservableObject {
                             // Сохраняем токен в UserDefaults
                             UserManager.shared.createUser(username: self.userName, userToken: token)
                             print(token)
-                            print(self.userName)
                             // Устанавливаем isRegistrationSuccessful на главном потоке
                             self.isAuthSuccessful = true
                             SessionManager.shared.login()
