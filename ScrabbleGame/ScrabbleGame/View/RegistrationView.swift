@@ -32,6 +32,7 @@ struct RegistrationView: View {
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray))
                 .padding([.horizontal], 24)
                 .offset(y: -120)
+                .autocapitalization(.none)
             
             // Поле ввода пароля
             ZStack(alignment: .trailing) {

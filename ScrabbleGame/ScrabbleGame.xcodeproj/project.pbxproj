@@ -73,21 +73,16 @@
 		09BF631D2C146A10009E2B18 /* ScrabbleGame */ = {
 			isa = PBXGroup;
 			children = (
+				8CEC6FEF2C17A9C5006BD28C /* Manager */,
+				8CEC6FEE2C17A998006BD28C /* View */,
+				8CEC6FEB2C17A95C006BD28C /* Model */,
+				8CEC6FEC2C17A95C006BD28C /* ViewModel */,
 				8CEC6FE72C17A79D006BD28C /* Consts.swift */,
-				09BF63312C146FCB009E2B18 /* SplashScreenView.swift */,
 				09BF631E2C146A10009E2B18 /* ScrabbleGameApp.swift */,
-				09BF63202C146A10009E2B18 /* ContentView.swift */,
 				09BF63222C146A12009E2B18 /* Assets.xcassets */,
 				09BF63272C146A12009E2B18 /* Persistence.swift */,
 				09BF63292C146A12009E2B18 /* ScrabbleGame.xcdatamodeld */,
 				09BF63242C146A12009E2B18 /* Preview Content */,
-				09BF63332C147013009E2B18 /* SessionManager.swift */,
-				09BF63352C14704B009E2B18 /* UserManager.swift */,
-				09BF63372C14706B009E2B18 /* User.swift */,
-				09BF63392C1470A3009E2B18 /* LoginView.swift */,
-				09BF633B2C1470D7009E2B18 /* BuyerAuthViewModel.swift */,
-				09BF633D2C147128009E2B18 /* RegistrationView.swift */,
-				09BF633F2C14714A009E2B18 /* RegistrationViewModel.swift */,
 			);
 			path = ScrabbleGame;
 			sourceTree = "<group>";
@@ -98,6 +93,45 @@
 				09BF63252C146A12009E2B18 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8CEC6FEB2C17A95C006BD28C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				09BF63372C14706B009E2B18 /* User.swift */,
+			);
+			name = Model;
+			path = ScrabbleGame/Model;
+			sourceTree = SOURCE_ROOT;
+		};
+		8CEC6FEC2C17A95C006BD28C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				09BF633B2C1470D7009E2B18 /* BuyerAuthViewModel.swift */,
+				09BF633F2C14714A009E2B18 /* RegistrationViewModel.swift */,
+			);
+			name = ViewModel;
+			path = ScrabbleGame/ViewModel;
+			sourceTree = SOURCE_ROOT;
+		};
+		8CEC6FEE2C17A998006BD28C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				09BF63392C1470A3009E2B18 /* LoginView.swift */,
+				09BF63312C146FCB009E2B18 /* SplashScreenView.swift */,
+				09BF63202C146A10009E2B18 /* ContentView.swift */,
+				09BF633D2C147128009E2B18 /* RegistrationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8CEC6FEF2C17A9C5006BD28C /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				09BF63332C147013009E2B18 /* SessionManager.swift */,
+				09BF63352C14704B009E2B18 /* UserManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
