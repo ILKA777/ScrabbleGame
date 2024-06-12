@@ -15,7 +15,7 @@ class ProfileViewModel: ObservableObject {
     init(user: User) {
         self.user = user
     }
-
+    
     func logout() {
         // Handle logout logic here
         print("User logged out")

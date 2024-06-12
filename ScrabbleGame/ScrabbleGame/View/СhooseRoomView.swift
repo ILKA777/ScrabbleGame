@@ -77,12 +77,14 @@ struct ChooseRoomView: View {
                             }
                             Button(action: {
                                 if let uuid = UUID(uuidString: inputID) {
-                                    viewModel.joinRoom(id: uuid) { [self] room in
-                                        DispatchQueue.main.async { // Убедитесь, что все UI обновления происходят в основном потоке.
+                                    viewModel.getRoom(id: uuid) { [self] room in
+                                        DispatchQueue.main.async {
                                             if let room = room {
                                                 self.viewModel.selectedRoom = room
                                                 print("Комната найдена: \(room.id)")
                                                 if room.roomCode == nil {
+                                                    viewModel.joinRoom(id: uuid, code: nil)
+                                                    
                                                     self.isGameRoomPresented = true
                                                 } else {
                                                     self.viewModel.isPasswordAlertPresented = true
@@ -137,7 +139,10 @@ struct ChooseRoomView: View {
                             Button(action: {
                                 if let room = viewModel.selectedRoom, viewModel.validatePassword(for: room) {
                                     print("Комната найдена: \(room.id), код верный")
-                                    isGameRoomPresented = true
+                                    if let uuid = UUID(uuidString: inputID) {
+                                        viewModel.joinRoom(id: uuid, code: room.roomCode)
+                                        isGameRoomPresented = true
+                                    }
                                 } else {
                                     print("Код неверный")
                                 }
