@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct GameRoomView: View {
+    @ObservedObject var viewModel: RoomViewModel
+    let roomId: UUID
     @State private var isMainViewPresented = false
-    
+    @Environment(\.presentationMode) var presentationMode
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -22,6 +25,14 @@ struct GameRoomView: View {
                     Spacer()
                 }
                 .navigationBarTitle("Игровая комната", displayMode: .inline)
+                .navigationBarItems(leading: Button(action: {
+                    print("leave \(roomId)")
+                    viewModel.leaveRoom(id: roomId)
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    Text("Выйти из комнаты")
+                        .foregroundColor(.red)
+                })
                 .navigationBarItems(trailing:
                     NavigationLink(destination: MainView(), isActive: $isMainViewPresented) {
                         Button(action: {
@@ -35,11 +46,5 @@ struct GameRoomView: View {
                 )
             }
         }
-    }
-}
-
-struct GameRoomView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameRoomView()
     }
 }

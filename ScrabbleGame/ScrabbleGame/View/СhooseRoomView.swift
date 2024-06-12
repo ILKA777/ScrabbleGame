@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChooseRoomView: View {
-    @StateObject private var viewModel = ChooseRoomViewModel()
+    @StateObject private var viewModel = RoomViewModel()
     @State private var inputID = ""
     @State private var isCreateRoomPresented = false
     @State private var isGameRoomPresented = false
@@ -164,7 +164,7 @@ struct ChooseRoomView: View {
                     .padding()
                 }
 
-                NavigationLink(destination: GameRoomView(), isActive: $isGameRoomPresented) {
+                NavigationLink(destination: GameRoomView(viewModel: viewModel, roomId: UUID(uuidString: inputID) ?? UUID()), isActive: $isGameRoomPresented) {
                     EmptyView()
                 }
             }

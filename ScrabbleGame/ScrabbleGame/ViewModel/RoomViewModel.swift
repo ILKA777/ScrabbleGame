@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class ChooseRoomViewModel: ObservableObject {
+class RoomViewModel: ObservableObject {
     @Published var isJoinRoomAlertPresented = false
     @Published var isPasswordAlertPresented = false
     @Published var isRoomJoined = false
@@ -87,6 +87,58 @@ class ChooseRoomViewModel: ObservableObject {
                 if let httpResponse = response as? HTTPURLResponse {
                     if httpResponse.statusCode == 200 {
                         self.isRoomJoined = true
+                        return
+                    } else {
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController(title: "Ошибка", message: "ошибка добавления в комнату", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            
+                            if let window = UIApplication.shared.windows.first {
+                                window.rootViewController?.present(alert, animated: true, completion: nil)
+                            }
+                        }
+                        print("HTTP Response Error: \(httpResponse.statusCode)")
+                    }
+                }
+            }
+        }.resume()
+    }
+    
+    func leaveRoom(id: UUID) {
+        let currentUser = UserManager.shared.getCurrentUser()
+        ProfileViewModel(user: currentUser).getCurrentUserId { [weak self] userId in
+            guard let userId = userId else {
+                print("Не удалось получить идентификатор пользователя")
+                return
+            }
+
+            self?.actuallyLeaveRoom(userId: userId, roomId: id)
+        }
+    }
+ 
+    private func actuallyLeaveRoom(userId: UUID, roomId: UUID) {
+        let currentUser = UserManager.shared.getCurrentUser()
+        guard let url = URL(string: "\(Constants.serverURL)/gamersIntoRoom/deleteGamer/\(userId)/withRoom/\(roomId)") else {
+            print("Invalid URL")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(Constants.serverApiKey, forHTTPHeaderField: "ApiKey")
+        request.setValue("Bearer \(currentUser.userToken!)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                guard let data = data, error == nil else {
+                    print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                    return
+                }
+                
+                if let httpResponse = response as? HTTPURLResponse {
+                    if httpResponse.statusCode == 204 {
+                        self.isRoomJoined = false
                         return
                     } else {
                         DispatchQueue.main.async {
