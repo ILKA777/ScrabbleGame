@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0928C88F2C19FBE100CBFF3F /* СhooseRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0928C88E2C19FBE100CBFF3F /* СhooseRoomView.swift */; };
+		0928C8932C19FC4400CBFF3F /* JoinRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0928C8922C19FC4400CBFF3F /* JoinRoomView.swift */; };
+		0928C8952C1A00E000CBFF3F /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0928C8942C1A00E000CBFF3F /* Room.swift */; };
+		0928C8972C1A00F300CBFF3F /* ChooseRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0928C8962C1A00F300CBFF3F /* ChooseRoomViewModel.swift */; };
+		0928C8992C1A0C2400CBFF3F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0928C8982C1A0C2400CBFF3F /* ProfileView.swift */; };
+		0928C89B2C1A0C5C00CBFF3F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0928C89A2C1A0C5C00CBFF3F /* ProfileViewModel.swift */; };
+		0928C89D2C1A107B00CBFF3F /* GameRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0928C89C2C1A107B00CBFF3F /* GameRoomView.swift */; };
+		0928C89F2C1A130400CBFF3F /* CustomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0928C89E2C1A130400CBFF3F /* CustomCellView.swift */; };
+		0928C8A12C1A131A00CBFF3F /* TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0928C8A02C1A131A00CBFF3F /* TableViewModel.swift */; };
+		0928C8A32C1A132B00CBFF3F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0928C8A22C1A132B00CBFF3F /* MainView.swift */; };
 		09BF631F2C146A10009E2B18 /* ScrabbleGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BF631E2C146A10009E2B18 /* ScrabbleGameApp.swift */; };
 		09BF63212C146A10009E2B18 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BF63202C146A10009E2B18 /* ContentView.swift */; };
 		09BF63232C146A12009E2B18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09BF63222C146A12009E2B18 /* Assets.xcassets */; };
@@ -25,6 +35,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0928C88E2C19FBE100CBFF3F /* СhooseRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "СhooseRoomView.swift"; sourceTree = "<group>"; };
+		0928C8922C19FC4400CBFF3F /* JoinRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRoomView.swift; sourceTree = "<group>"; };
+		0928C8942C1A00E000CBFF3F /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		0928C8962C1A00F300CBFF3F /* ChooseRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRoomViewModel.swift; sourceTree = "<group>"; };
+		0928C8982C1A0C2400CBFF3F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		0928C89A2C1A0C5C00CBFF3F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		0928C89C2C1A107B00CBFF3F /* GameRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomView.swift; sourceTree = "<group>"; };
+		0928C89E2C1A130400CBFF3F /* CustomCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellView.swift; sourceTree = "<group>"; };
+		0928C8A02C1A131A00CBFF3F /* TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
+		0928C8A22C1A132B00CBFF3F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		09BF631B2C146A10009E2B18 /* ScrabbleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrabbleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09BF631E2C146A10009E2B18 /* ScrabbleGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrabbleGameApp.swift; sourceTree = "<group>"; };
 		09BF63202C146A10009E2B18 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,6 +74,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0928C8912C19FC3800CBFF3F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				0928C8922C19FC4400CBFF3F /* JoinRoomView.swift */,
+				0928C89E2C1A130400CBFF3F /* CustomCellView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		09BF63122C146A10009E2B18 = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +102,7 @@
 		09BF631D2C146A10009E2B18 /* ScrabbleGame */ = {
 			isa = PBXGroup;
 			children = (
+				0928C8912C19FC3800CBFF3F /* Components */,
 				8CEC6FEF2C17A9C5006BD28C /* Manager */,
 				8CEC6FEE2C17A998006BD28C /* View */,
 				8CEC6FEB2C17A95C006BD28C /* Model */,
@@ -99,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				09BF63372C14706B009E2B18 /* User.swift */,
+				0928C8942C1A00E000CBFF3F /* Room.swift */,
 			);
 			name = Model;
 			path = ScrabbleGame/Model;
@@ -109,6 +140,9 @@
 			children = (
 				09BF633B2C1470D7009E2B18 /* BuyerAuthViewModel.swift */,
 				09BF633F2C14714A009E2B18 /* RegistrationViewModel.swift */,
+				0928C8962C1A00F300CBFF3F /* ChooseRoomViewModel.swift */,
+				0928C89A2C1A0C5C00CBFF3F /* ProfileViewModel.swift */,
+				0928C8A02C1A131A00CBFF3F /* TableViewModel.swift */,
 			);
 			name = ViewModel;
 			path = ScrabbleGame/ViewModel;
@@ -121,6 +155,10 @@
 				09BF63312C146FCB009E2B18 /* SplashScreenView.swift */,
 				09BF63202C146A10009E2B18 /* ContentView.swift */,
 				09BF633D2C147128009E2B18 /* RegistrationView.swift */,
+				0928C88E2C19FBE100CBFF3F /* СhooseRoomView.swift */,
+				0928C8982C1A0C2400CBFF3F /* ProfileView.swift */,
+				0928C89C2C1A107B00CBFF3F /* GameRoomView.swift */,
+				0928C8A22C1A132B00CBFF3F /* MainView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -205,15 +243,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				09BF633E2C147128009E2B18 /* RegistrationView.swift in Sources */,
+				0928C89F2C1A130400CBFF3F /* CustomCellView.swift in Sources */,
+				0928C89B2C1A0C5C00CBFF3F /* ProfileViewModel.swift in Sources */,
 				09BF63402C14714A009E2B18 /* RegistrationViewModel.swift in Sources */,
+				0928C8952C1A00E000CBFF3F /* Room.swift in Sources */,
+				0928C8932C19FC4400CBFF3F /* JoinRoomView.swift in Sources */,
 				09BF63282C146A12009E2B18 /* Persistence.swift in Sources */,
 				8CEC6FE82C17A79D006BD28C /* Consts.swift in Sources */,
 				09BF632B2C146A12009E2B18 /* ScrabbleGame.xcdatamodeld in Sources */,
 				09BF63362C14704B009E2B18 /* UserManager.swift in Sources */,
 				09BF633A2C1470A4009E2B18 /* LoginView.swift in Sources */,
 				09BF63342C147013009E2B18 /* SessionManager.swift in Sources */,
+				0928C89D2C1A107B00CBFF3F /* GameRoomView.swift in Sources */,
+				0928C8A12C1A131A00CBFF3F /* TableViewModel.swift in Sources */,
+				0928C8992C1A0C2400CBFF3F /* ProfileView.swift in Sources */,
 				09BF63382C14706B009E2B18 /* User.swift in Sources */,
 				09BF63322C146FCB009E2B18 /* SplashScreenView.swift in Sources */,
+				0928C8972C1A00F300CBFF3F /* ChooseRoomViewModel.swift in Sources */,
+				0928C88F2C19FBE100CBFF3F /* СhooseRoomView.swift in Sources */,
+				0928C8A32C1A132B00CBFF3F /* MainView.swift in Sources */,
 				09BF63212C146A10009E2B18 /* ContentView.swift in Sources */,
 				09BF633C2C1470D7009E2B18 /* BuyerAuthViewModel.swift in Sources */,
 				09BF631F2C146A10009E2B18 /* ScrabbleGameApp.swift in Sources */,
@@ -350,7 +398,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ScrabbleGame/Preview Content\"";
-				DEVELOPMENT_TEAM = 4Y6QF6WA94;
+				DEVELOPMENT_TEAM = G5ZDRD88ZH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -363,7 +411,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ScrabbleGame;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.ScrabbleGame.ScrabbleGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -379,7 +427,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ScrabbleGame/Preview Content\"";
-				DEVELOPMENT_TEAM = 4Y6QF6WA94;
+				DEVELOPMENT_TEAM = G5ZDRD88ZH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -392,7 +440,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ScrabbleGame;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.ScrabbleGame.ScrabbleGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
