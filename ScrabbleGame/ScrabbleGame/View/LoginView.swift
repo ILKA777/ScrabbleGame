@@ -29,6 +29,7 @@ struct LoginView: View {
                 .padding([.horizontal], 24)
                 .offset(y: -120)
                 .ignoresSafeArea(.keyboard, edges: .all)
+                .autocapitalization(.none)
             
             ZStack(alignment: .trailing) {
                 if isPasswordVisible {

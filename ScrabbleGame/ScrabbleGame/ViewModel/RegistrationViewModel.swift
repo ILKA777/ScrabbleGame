@@ -9,10 +9,11 @@ import SwiftUI
 
 class RegistrationViewModel: ObservableObject {
     @Published var userName: String = ""
-    @Published var email: String = ""
     @Published var password: String = ""
     @Published var matchingPassword: String = ""
     @Published var isRegistrationSuccessful = false
+    
+    private var authViewModel = BuyerAuthViewModel()
     
     func registerUser() {
         // Проверяем, совпадают ли пароли
@@ -31,16 +32,14 @@ class RegistrationViewModel: ObservableObject {
         }
         
         // Если пароли совпадают, выполняем регистрацию пользователя
-        guard let url = URL(string: "http://localhost:8090/register") else {
+        guard let url = URL(string: "\(Constants.serverURL)/auth/register") else {
             print("Invalid URL")
             return
         }
         
         let parameters = [
-            "username": userName,
-            "password": password,
-            "email": email,
-            "role": "CLIENT"
+            "nickName": userName,
+            "password": password
         ]
         
         guard let jsonData = try? JSONSerialization.data(withJSONObject: parameters) else {
@@ -51,6 +50,7 @@ class RegistrationViewModel: ObservableObject {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(Constants.serverApiKey, forHTTPHeaderField: "ApiKey")
         request.httpBody = jsonData
         
         URLSession.shared.dataTask(with: request) { [self] data, response, error in
@@ -64,7 +64,10 @@ class RegistrationViewModel: ObservableObject {
                     if httpResponse.statusCode == 200 {
                         if let token = String(data: data, encoding: .utf8) {
                             // Сохраняем токен в UserDefaults
-                            UserManager.shared.createUser(username: self.userName, userToken: token)
+                            self.authViewModel.userName = self.userName
+                            self.authViewModel.password = self.password
+                            self.authViewModel.authUser()
+
                             print(token)
                             // Устанавливаем isRegistrationSuccessful на главном потоке
                             self.isRegistrationSuccessful = true
