@@ -10,7 +10,7 @@ import SwiftUI
 struct RegistrationView: View {
     @StateObject private var viewModel = RegistrationViewModel()
     @State private var isOrganizationInfoViewActive = false
-    @State private var isTabBarViewActive = false
+    @State private var isChooseRoomViewActive = false
     @State private var isPasswordVisible = false
     @State private var isSecondPasswordVisible = false
     
@@ -111,14 +111,17 @@ struct RegistrationView: View {
             
             .onReceive(viewModel.$isRegistrationSuccessful) { registrationSuccessful in
                 if registrationSuccessful {
-                    // Переход на BuyerTabBarViewModel после успешной регистрации
-                    isTabBarViewActive = true
+                    isChooseRoomViewActive = true
                 }
             }
             .background(
-                EmptyView()
+                NavigationLink(
+                    destination: ChooseRoomView().navigationBarHidden(true),
+                    isActive: $isChooseRoomViewActive
+                ) {
+                    EmptyView()
+                }
             )
-            
             .padding()
         }
     }

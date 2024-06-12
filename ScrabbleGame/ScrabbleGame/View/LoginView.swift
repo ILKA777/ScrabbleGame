@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @StateObject private var viewModel = BuyerAuthViewModel()
-    @State private var isTabBarViewActive = false
+    @State private var isChooseRoomViewActive = false
     @State private var isPasswordVisible = false
     
     var body: some View {
@@ -74,17 +74,16 @@ struct LoginView: View {
             
             .onReceive(viewModel.$isAuthSuccessful) { authSuccessful in
                 if authSuccessful {
-                    // Переход на BuyerTabBarViewModel после успешной регистрации
-                    isTabBarViewActive = true
+                    isChooseRoomViewActive = true
                 }
             }
             .background(
-//                NavigationLink(
-//                    destination: BuyerTabBarViewModel().navigationBarHidden(true),
-//                    isActive: $isTabBarViewActive
-//                ) {
-//                    EmptyView()
-//                }
+                NavigationLink(
+                    destination: ChooseRoomView().navigationBarHidden(true),
+                    isActive: $isChooseRoomViewActive
+                ) {
+                    EmptyView()
+                }
             )
         }
         .padding()

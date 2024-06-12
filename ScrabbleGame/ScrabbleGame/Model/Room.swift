@@ -8,6 +8,6 @@
 import Foundation
 
 struct Room: Identifiable {
-    var id: String
-    var password: String?
+    var id: UUID
+    var roomCode: String?
 }

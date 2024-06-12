@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ChooseRoomView: View {
     @StateObject private var viewModel = ChooseRoomViewModel()
+    @State private var inputID = ""
     @State private var isCreateRoomPresented = false
     @State private var isGameRoomPresented = false
     @EnvironmentObject var sessionManager: SessionManager
@@ -60,7 +61,7 @@ struct ChooseRoomView: View {
                     VStack {
                         Text("Войти в комнату")
                             .font(.headline)
-                        TextField("ID комнаты", text: $viewModel.roomID)
+                        TextField("ID комнаты", text: $inputID)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding()
                         HStack {
@@ -75,16 +76,18 @@ struct ChooseRoomView: View {
                                     .cornerRadius(10)
                             }
                             Button(action: {
-                                if let room = viewModel.joinRoom(id: viewModel.roomID) {
+                                if let uuid = UUID(uuidString: inputID), let room = viewModel.joinRoom(id: uuid) {
                                     viewModel.selectedRoom = room
-                                    if room.password == nil {
+                                    print(uuid)
+                                    print("комната \(room)")
+                                    if room.roomCode == nil {
                                         print("Комната найдена: \(room.id)")
                                         isGameRoomPresented = true
                                     } else {
                                         viewModel.isPasswordAlertPresented = true
                                     }
                                 } else {
-                                    print("Комната с ID \(viewModel.roomID) не найдена")
+                                    print("Комната с ID \(inputID) не найдена")
                                 }
                                 viewModel.isJoinRoomAlertPresented = false
                             }) {
@@ -103,7 +106,6 @@ struct ChooseRoomView: View {
                     .shadow(radius: 10)
                     .padding()
                 }
-
                 if viewModel.isPasswordAlertPresented {
                     Color.black.opacity(0.4)
                         .edgesIgnoringSafeArea(.all)
@@ -111,7 +113,7 @@ struct ChooseRoomView: View {
                     VStack {
                         Text("Введите пароль")
                             .font(.headline)
-                        SecureField("Пароль", text: $viewModel.password)
+                        SecureField("Код комнаты", text: $viewModel.roomCode)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding()
                         HStack {
@@ -127,10 +129,10 @@ struct ChooseRoomView: View {
                             }
                             Button(action: {
                                 if let room = viewModel.selectedRoom, viewModel.validatePassword(for: room) {
-                                    print("Комната найдена: \(room.id), пароль верный")
+                                    print("Комната найдена: \(room.id), код верный")
                                     isGameRoomPresented = true
                                 } else {
-                                    print("Пароль неверный")
+                                    print("Код неверный")
                                 }
                                 viewModel.isPasswordAlertPresented = false
                             }) {
@@ -155,7 +157,7 @@ struct ChooseRoomView: View {
                 }
             }
             .navigationBarHidden(false)
-            .navigationBarTitle("Choose Room", displayMode: .inline)
+            .navigationBarTitle("Выбор комнаты", displayMode: .inline)
             .navigationBarItems(trailing:
                 NavigationLink(destination: ProfileView(user: User(username: "UserLogin", userToken: "someToken"))) {
                     Image(systemName: "person.circle")

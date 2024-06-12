@@ -67,8 +67,6 @@ class RegistrationViewModel: ObservableObject {
                             self.authViewModel.userName = self.userName
                             self.authViewModel.password = self.password
                             self.authViewModel.authUser()
-
-                            print(token)
                             // Устанавливаем isRegistrationSuccessful на главном потоке
                             self.isRegistrationSuccessful = true
                         }
