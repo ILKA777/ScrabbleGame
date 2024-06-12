@@ -7,7 +7,10 @@
 
 import Foundation
 
-struct Room: Identifiable {
+struct Room: Identifiable, Decodable {
     var id: UUID
     var roomCode: String?
+    var adminNickname: String
+    var currentNumberOfChips: Int
+    var gameStatus: String
 }

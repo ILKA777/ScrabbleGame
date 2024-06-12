@@ -76,20 +76,27 @@ struct ChooseRoomView: View {
                                     .cornerRadius(10)
                             }
                             Button(action: {
-                                if let uuid = UUID(uuidString: inputID), let room = viewModel.joinRoom(id: uuid) {
-                                    viewModel.selectedRoom = room
-                                    print(uuid)
-                                    print("комната \(room)")
-                                    if room.roomCode == nil {
-                                        print("Комната найдена: \(room.id)")
-                                        isGameRoomPresented = true
-                                    } else {
-                                        viewModel.isPasswordAlertPresented = true
+                                if let uuid = UUID(uuidString: inputID) {
+                                    viewModel.joinRoom(id: uuid) { [self] room in
+                                        DispatchQueue.main.async { // Убедитесь, что все UI обновления происходят в основном потоке.
+                                            if let room = room {
+                                                self.viewModel.selectedRoom = room
+                                                print("Комната найдена: \(room.id)")
+                                                if room.roomCode == nil {
+                                                    self.isGameRoomPresented = true
+                                                } else {
+                                                    self.viewModel.isPasswordAlertPresented = true
+                                                }
+                                            } else {
+                                                print("Комната с ID \(self.inputID) не найдена")
+                                            }
+                                            self.viewModel.isJoinRoomAlertPresented = false
+                                        }
                                     }
                                 } else {
-                                    print("Комната с ID \(inputID) не найдена")
+                                    print("Неверный формат UUID")
+                                    viewModel.isJoinRoomAlertPresented = false
                                 }
-                                viewModel.isJoinRoomAlertPresented = false
                             }) {
                                 Text("Войти")
                                     .frame(minWidth: 0, maxWidth: .infinity)

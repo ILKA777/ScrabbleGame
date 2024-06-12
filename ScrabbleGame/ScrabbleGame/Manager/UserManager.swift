@@ -32,6 +32,13 @@ class UserManager: ObservableObject {
         self.currentUser = User(username: username, userToken: userToken)
     }
     
+    func getCurrentUser() -> User {
+        let storedToken = userDefaults.string(forKey: UserDefaultsKeys.userToken)
+        let userName = userDefaults.string(forKey: UserDefaultsKeys.username)
+        
+        return User(username: userName, userToken: storedToken)
+    }
+    
     func logout() {
         userDefaults.removeObject(forKey: UserDefaultsKeys.userToken)
         userDefaults.removeObject(forKey: UserDefaultsKeys.username)

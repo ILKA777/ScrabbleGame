@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class BuyerAuthViewModel: ObservableObject {
+class AuthViewModel: ObservableObject {
     @Published var userName: String = ""
     @Published var password: String = ""
     @Published var isAuthSuccessful = false

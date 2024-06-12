@@ -13,7 +13,7 @@ class RegistrationViewModel: ObservableObject {
     @Published var matchingPassword: String = ""
     @Published var isRegistrationSuccessful = false
     
-    private var authViewModel = BuyerAuthViewModel()
+    private var authViewModel = AuthViewModel()
     
     func registerUser() {
         // Проверяем, совпадают ли пароли
