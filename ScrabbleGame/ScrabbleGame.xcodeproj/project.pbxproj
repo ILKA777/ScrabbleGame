@@ -17,6 +17,7 @@
 		0928C89F2C1A130400CBFF3F /* CustomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0928C89E2C1A130400CBFF3F /* CustomCellView.swift */; };
 		0928C8A12C1A131A00CBFF3F /* TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0928C8A02C1A131A00CBFF3F /* TableViewModel.swift */; };
 		0928C8A32C1A132B00CBFF3F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0928C8A22C1A132B00CBFF3F /* MainView.swift */; };
+		099764B02C1AD0770031B0F7 /* ScrabbleGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099764AF2C1AD0770031B0F7 /* ScrabbleGameTests.swift */; };
 		09BF631F2C146A10009E2B18 /* ScrabbleGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BF631E2C146A10009E2B18 /* ScrabbleGameApp.swift */; };
 		09BF63212C146A10009E2B18 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BF63202C146A10009E2B18 /* ContentView.swift */; };
 		09BF63232C146A12009E2B18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09BF63222C146A12009E2B18 /* Assets.xcassets */; };
@@ -34,6 +35,16 @@
 		8CEC6FE82C17A79D006BD28C /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC6FE72C17A79D006BD28C /* Consts.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		099764B12C1AD0770031B0F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09BF63132C146A10009E2B18 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 09BF631A2C146A10009E2B18;
+			remoteInfo = ScrabbleGame;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0928C88E2C19FBE100CBFF3F /* СhooseRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "СhooseRoomView.swift"; sourceTree = "<group>"; };
 		0928C8922C19FC4400CBFF3F /* JoinRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRoomView.swift; sourceTree = "<group>"; };
@@ -45,6 +56,8 @@
 		0928C89E2C1A130400CBFF3F /* CustomCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellView.swift; sourceTree = "<group>"; };
 		0928C8A02C1A131A00CBFF3F /* TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
 		0928C8A22C1A132B00CBFF3F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		099764AD2C1AD0770031B0F7 /* ScrabbleGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrabbleGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		099764AF2C1AD0770031B0F7 /* ScrabbleGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrabbleGameTests.swift; sourceTree = "<group>"; };
 		09BF631B2C146A10009E2B18 /* ScrabbleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrabbleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09BF631E2C146A10009E2B18 /* ScrabbleGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrabbleGameApp.swift; sourceTree = "<group>"; };
 		09BF63202C146A10009E2B18 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -64,6 +77,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		099764AA2C1AD0770031B0F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		09BF63182C146A10009E2B18 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -83,10 +103,19 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		099764AE2C1AD0770031B0F7 /* ScrabbleGameTests */ = {
+			isa = PBXGroup;
+			children = (
+				099764AF2C1AD0770031B0F7 /* ScrabbleGameTests.swift */,
+			);
+			path = ScrabbleGameTests;
+			sourceTree = "<group>";
+		};
 		09BF63122C146A10009E2B18 = {
 			isa = PBXGroup;
 			children = (
 				09BF631D2C146A10009E2B18 /* ScrabbleGame */,
+				099764AE2C1AD0770031B0F7 /* ScrabbleGameTests */,
 				09BF631C2C146A10009E2B18 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -95,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				09BF631B2C146A10009E2B18 /* ScrabbleGame.app */,
+				099764AD2C1AD0770031B0F7 /* ScrabbleGameTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -175,6 +205,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		099764AC2C1AD0770031B0F7 /* ScrabbleGameTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 099764B32C1AD0770031B0F7 /* Build configuration list for PBXNativeTarget "ScrabbleGameTests" */;
+			buildPhases = (
+				099764A92C1AD0770031B0F7 /* Sources */,
+				099764AA2C1AD0770031B0F7 /* Frameworks */,
+				099764AB2C1AD0770031B0F7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				099764B22C1AD0770031B0F7 /* PBXTargetDependency */,
+			);
+			name = ScrabbleGameTests;
+			productName = ScrabbleGameTests;
+			productReference = 099764AD2C1AD0770031B0F7 /* ScrabbleGameTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		09BF631A2C146A10009E2B18 /* ScrabbleGame */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 09BF632E2C146A12009E2B18 /* Build configuration list for PBXNativeTarget "ScrabbleGame" */;
@@ -199,9 +247,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1520;
+				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
+					099764AC2C1AD0770031B0F7 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 09BF631A2C146A10009E2B18;
+					};
 					09BF631A2C146A10009E2B18 = {
 						CreatedOnToolsVersion = 15.2;
 					};
@@ -221,11 +273,19 @@
 			projectRoot = "";
 			targets = (
 				09BF631A2C146A10009E2B18 /* ScrabbleGame */,
+				099764AC2C1AD0770031B0F7 /* ScrabbleGameTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		099764AB2C1AD0770031B0F7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		09BF63192C146A10009E2B18 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -238,6 +298,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		099764A92C1AD0770031B0F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				099764B02C1AD0770031B0F7 /* ScrabbleGameTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		09BF63172C146A10009E2B18 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -270,7 +338,53 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		099764B22C1AD0770031B0F7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 09BF631A2C146A10009E2B18 /* ScrabbleGame */;
+			targetProxy = 099764B12C1AD0770031B0F7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		099764B42C1AD0770031B0F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G5ZDRD88ZH;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ilka.ScrabbleGameTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ScrabbleGame.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ScrabbleGame";
+			};
+			name = Debug;
+		};
+		099764B52C1AD0770031B0F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G5ZDRD88ZH;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ilka.ScrabbleGameTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ScrabbleGame.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ScrabbleGame";
+			};
+			name = Release;
+		};
 		09BF632C2C146A12009E2B18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -451,6 +565,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		099764B32C1AD0770031B0F7 /* Build configuration list for PBXNativeTarget "ScrabbleGameTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				099764B42C1AD0770031B0F7 /* Debug */,
+				099764B52C1AD0770031B0F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		09BF63162C146A10009E2B18 /* Build configuration list for PBXProject "ScrabbleGame" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
