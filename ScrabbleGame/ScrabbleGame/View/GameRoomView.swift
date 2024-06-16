@@ -34,7 +34,7 @@ struct GameRoomView: View {
                         .foregroundColor(.red)
                 })
                 .navigationBarItems(trailing:
-                    NavigationLink(destination: MainView(), isActive: $isMainViewPresented) {
+                        NavigationLink(destination: GameRoomSettingsView(viewModel: viewModel, roomId: roomId), isActive: $isMainViewPresented) {
                         Button(action: {
                             // Trigger the transition to MainView
                             isMainViewPresented = true

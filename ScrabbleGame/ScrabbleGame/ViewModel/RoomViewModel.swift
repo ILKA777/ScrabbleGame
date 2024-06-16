@@ -73,6 +73,45 @@ class RoomViewModel: ObservableObject {
            }
        }.resume()
     }
+
+    func changeRoomStatus(id: UUID, status: String) {
+        guard let url = URL(string: "\(Constants.serverURL)/gameRooms/\(id)/status") else {
+            print("Invalid URL")
+            return
+        }
+        
+        let parameters: [String: Any] = ["status": status]
+        
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: parameters) else {
+            print("Failed to serialize parameters")
+            return
+        }
+        
+        let currentUser = UserManager.shared.getCurrentUser()
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(Constants.serverApiKey, forHTTPHeaderField: "ApiKey")
+        request.setValue("Bearer \(currentUser.userToken!)", forHTTPHeaderField: "Authorization")
+        request.httpBody = jsonData
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                guard error == nil else {
+                    print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                    return
+                }
+                
+                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                    print("Room status changed to \(status)")
+                } else {
+                    print("HTTP Error: \(response.debugDescription)")
+                }
+            }
+        }.resume()
+    }
+
     
     func getRoom(id: UUID, completion: @escaping (Room?) -> Void) {
         guard let url = URL(string: "\(Constants.serverURL)/gameRooms/\(id)") else {
@@ -201,7 +240,7 @@ class RoomViewModel: ObservableObject {
                         return
                     } else {
                         DispatchQueue.main.async {
-                            let alert = UIAlertController(title: "Ошибка", message: "ошибка добавления в комнату", preferredStyle: .alert)
+                            let alert = UIAlertController(title: "Ошибка", message: "ошибка выхода из комнаты", preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                             
                             if let window = UIApplication.shared.windows.first {
@@ -215,6 +254,57 @@ class RoomViewModel: ObservableObject {
         }.resume()
     }
 
+    func getRoomRole(roomId: UUID, completion: @escaping (String) -> Void) {
+        getRoom(id: roomId) { room in
+            let currentUser = UserManager.shared.getCurrentUser()
+            if (currentUser.username == room!.adminNickname) {
+                completion("admin")
+            } else {
+                completion("participant")
+            }
+        }
+    }
+    
+    func deleteRoom(roomId: UUID) {
+        let currentUser = UserManager.shared.getCurrentUser()
+        guard let url = URL(string: "\(Constants.serverURL)/gameRooms/\(roomId)") else {
+            print("Invalid URL")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(Constants.serverApiKey, forHTTPHeaderField: "ApiKey")
+        request.setValue("Bearer \(currentUser.userToken!)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                guard let data = data, error == nil else {
+                    print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                    return
+                }
+                
+                if let httpResponse = response as? HTTPURLResponse {
+                    if httpResponse.statusCode == 204 {
+                        self.isRoomJoined = false
+                        return
+                    } else {
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController(title: "Ошибка", message: "ошибка удаления комнаты", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            
+                            if let window = UIApplication.shared.windows.first {
+                                window.rootViewController?.present(alert, animated: true, completion: nil)
+                            }
+                        }
+                        print("HTTP Response Error: \(httpResponse.statusCode)")
+                    }
+                }
+            }
+        }.resume()
+    }
+    
     func validatePassword(for room: Room) -> Bool {
         return room.roomCode == roomCode
     }
