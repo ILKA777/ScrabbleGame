@@ -58,8 +58,7 @@ class ProfileViewModel: ObservableObject {
     }
     
     func logout() {
-        // Handle logout logic here
-        print("User logged out")
+        UserManager.shared.logout()
         isLoggedIn = false
     }
 

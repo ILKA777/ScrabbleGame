@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-import SwiftUI
 
 struct ProfileView: View {
     @StateObject private var viewModel: ProfileViewModel
+    @State private var isLoggedOut = false
 
     init(user: User) {
         _viewModel = StateObject(wrappedValue: ProfileViewModel(user: user))
@@ -72,6 +72,14 @@ struct ProfileView: View {
                     Image(systemName: "door.right.hand.open")
                         .foregroundColor(.white)
                 })
+                .onReceive(viewModel.$isLoggedIn) { isLoggedIn in
+                    if !isLoggedIn {
+                        isLoggedOut = true
+                    }
+                }
+                .fullScreenCover(isPresented: $isLoggedOut) {
+                    ContentView()
+                }
             }
         }
     }
