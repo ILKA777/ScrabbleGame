@@ -15,7 +15,9 @@ class RoomViewModel: ObservableObject {
     @Published var roomCode = ""
     @Published var selectedRoom: Room?
     @Published var isPrivate = false
-
+    @Published var roomStatus: String = "Not Started"
+    @Published var userRole: String = "user"
+    
     func createRoom(completion: @escaping (Room?) -> Void) {
         let currentUser = UserManager.shared.getCurrentUser()
         
@@ -32,7 +34,7 @@ class RoomViewModel: ObservableObject {
         if roomCode != "" {
             parameters["roomCode"] = roomCode
         }
-
+        
         guard let jsonData = try? JSONSerialization.data(withJSONObject: parameters) else {
             print("Failed to serialize parameters")
             return
@@ -42,38 +44,41 @@ class RoomViewModel: ObservableObject {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue(Constants.serverApiKey, forHTTPHeaderField: "ApiKey")
-        request.setValue("Bearer \(currentUser.userToken!)", forHTTPHeaderField: "Authorization")
+        guard let userToken = currentUser.userToken else {
+            return
+        }
+        request.setValue("Bearer \(userToken)", forHTTPHeaderField: "Authorization")
         request.httpBody = jsonData
         
         URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
-           DispatchQueue.main.async {
-               guard let data = data, error == nil else {
-                   print("Error: \(error?.localizedDescription ?? "Unknown error")")
-                   completion(nil)
-                   return
-               }
-               
-               if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
-                   let decodedRoom = try? JSONDecoder().decode(Room.self, from: data)
-                   completion(decodedRoom)
-                   
-                   if let room = decodedRoom {
-                       self?.joinRoom(id: room.id, code: self?.roomCode)
-                   }
-               } else {
-                   print("HTTP Error: \(response.debugDescription)")
-                   if let errorString = String(data: data, encoding: .utf8) {
-                       print("Error response text: \(errorString)")
-                   } else {
-                       print("Unable to convert data to string")
-                   }
-                   completion(nil)
-               }
-
-           }
-       }.resume()
+            DispatchQueue.main.async {
+                guard let data = data, error == nil else {
+                    print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                    completion(nil)
+                    return
+                }
+                
+                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                    let decodedRoom = try? JSONDecoder().decode(Room.self, from: data)
+                    completion(decodedRoom)
+                    
+                    if let room = decodedRoom {
+                        self?.joinRoom(id: room.id, code: self?.roomCode)
+                    }
+                } else {
+                    print("HTTP Error: \(response.debugDescription)")
+                    if let errorString = String(data: data, encoding: .utf8) {
+                        print("Error response text: \(errorString)")
+                    } else {
+                        print("Unable to convert data to string")
+                    }
+                    completion(nil)
+                }
+                
+            }
+        }.resume()
     }
-
+    
     func changeRoomStatus(id: UUID, status: String) {
         var gameStatus = "run";
         
@@ -109,7 +114,7 @@ class RoomViewModel: ObservableObject {
             }
         }.resume()
     }
-
+    
     
     func getRoom(id: UUID, completion: @escaping (Room?) -> Void) {
         guard let url = URL(string: "\(Constants.serverURL)/gameRooms/\(id)") else {
@@ -207,11 +212,11 @@ class RoomViewModel: ObservableObject {
                 print("Не удалось получить идентификатор пользователя")
                 return
             }
-
+            
             self?.actuallyLeaveRoom(userId: userId, roomId: id)
         }
     }
- 
+    
     private func actuallyLeaveRoom(userId: UUID, roomId: UUID) {
         let currentUser = UserManager.shared.getCurrentUser()
         guard let url = URL(string: "\(Constants.serverURL)/gamersIntoRoom/deleteGamer/\(userId)/withRoom/\(roomId)") else {
@@ -251,7 +256,7 @@ class RoomViewModel: ObservableObject {
             }
         }.resume()
     }
-
+    
     func getRoomRole(roomId: UUID, completion: @escaping (String) -> Void) {
         getRoom(id: roomId) { room in
             let currentUser = UserManager.shared.getCurrentUser()

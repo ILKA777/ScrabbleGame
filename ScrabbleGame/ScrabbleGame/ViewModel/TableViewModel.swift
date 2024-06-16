@@ -19,4 +19,3 @@ class TableViewModel: ObservableObject {
         print("\(users[index]) accepted")
     }
 }
-

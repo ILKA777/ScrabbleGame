@@ -7,15 +7,14 @@
 
 import SwiftUI
 
-
 struct ProfileView: View {
     @StateObject private var viewModel: ProfileViewModel
     @State private var isLoggedOut = false
-
+    
     init(user: User) {
         _viewModel = StateObject(wrappedValue: ProfileViewModel(user: user))
     }
-
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -38,9 +37,9 @@ struct ProfileView: View {
                             .cornerRadius(10)
                             .padding(.top, 50)
                     }
-
+                    
                     Spacer()
-
+                    
                     Button(action: {
                         viewModel.showDeleteConfirmation = true
                     }) {
@@ -61,7 +60,7 @@ struct ProfileView: View {
                             secondaryButton: .cancel()
                         )
                     }
-
+                    
                     Spacer()
                 }
                 .padding()

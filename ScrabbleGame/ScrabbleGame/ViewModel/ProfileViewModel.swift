@@ -11,7 +11,7 @@ class ProfileViewModel: ObservableObject {
     @Published var user: User
     @Published var isLoggedIn: Bool = true
     @Published var showDeleteConfirmation: Bool = false
-
+    
     init(user: User) {
         self.user = user
     }
@@ -61,7 +61,7 @@ class ProfileViewModel: ObservableObject {
         UserManager.shared.logout()
         isLoggedIn = false
     }
-
+    
     func deleteAccount() {
         getCurrentUserId { [weak self] userId in
             guard let self = self, let userId = userId else {

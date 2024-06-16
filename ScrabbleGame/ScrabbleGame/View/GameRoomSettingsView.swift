@@ -14,9 +14,9 @@ struct GameRoomSettingsView: View {
     @State private var roomStatus: String = "Not Started"
     @State private var userRole: String = "user"
     @State private var navigateFromRoom = false
-
+    
     @Environment(\.presentationMode) var presentationMode
-
+    
     var body: some View {
         ZStack {
             Color.black.edgesIgnoringSafeArea(.all)
@@ -39,7 +39,7 @@ struct GameRoomSettingsView: View {
                             .cornerRadius(10)
                     }
                     .padding(.bottom, 20)
-
+                    
                     Button(action: {
                         viewModel.deleteRoom(roomId: roomId)
                         navigateFromRoom = true
@@ -51,7 +51,7 @@ struct GameRoomSettingsView: View {
                             .cornerRadius(10)
                     }
                 }
-
+                
                 Spacer()
             }
             .onAppear {

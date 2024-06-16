@@ -91,4 +91,3 @@ class RegistrationViewModel: ObservableObject {
         }.resume()
     }
 }
-

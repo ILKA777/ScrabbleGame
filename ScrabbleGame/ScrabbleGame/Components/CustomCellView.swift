@@ -11,7 +11,7 @@ struct CustomCellView: View {
     var username: String
     var onRemove: () -> Void
     var onAccept: () -> Void
-
+    
     var body: some View {
         HStack {
             Text(username)
@@ -36,4 +36,3 @@ struct CustomCellView: View {
         .shadow(radius: 2)
     }
 }
-

@@ -65,4 +65,3 @@ class AuthViewModel: ObservableObject {
         }.resume()
     }
 }
-

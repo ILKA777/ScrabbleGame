@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ChooseRoomView: View {
-    @StateObject private var viewModel = RoomViewModel()
+    @StateObject public var viewModel = RoomViewModel()
     @State private var inputID = ""
     @State private var isCreateRoomPresented = false
     @State private var isGameRoomPresented = false
     @EnvironmentObject var sessionManager: SessionManager
-
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -50,14 +50,14 @@ struct ChooseRoomView: View {
                             .background(Color.orange)
                             .cornerRadius(10)
                     }
-
+                    
                     Spacer()
                 }
-
+                
                 if viewModel.isJoinRoomAlertPresented {
                     Color.black.opacity(0.4)
                         .edgesIgnoringSafeArea(.all)
-
+                    
                     VStack {
                         Text("Войти в комнату")
                             .font(.headline)
@@ -118,7 +118,7 @@ struct ChooseRoomView: View {
                 if viewModel.isPasswordAlertPresented {
                     Color.black.opacity(0.4)
                         .edgesIgnoringSafeArea(.all)
-
+                    
                     VStack {
                         Text("Введите пароль")
                             .font(.headline)
@@ -163,20 +163,20 @@ struct ChooseRoomView: View {
                     .shadow(radius: 10)
                     .padding()
                 }
-
+                
                 NavigationLink(
                     destination: GameRoomView(viewModel: viewModel, roomId: UUID(uuidString: inputID) ?? UUID()),
                     isActive: $isGameRoomPresented) {
-                    EmptyView()
-                }
+                        EmptyView()
+                    }
             }
             .navigationBarHidden(false)
             .navigationBarTitle("Выбор комнаты", displayMode: .inline)
             .navigationBarItems(trailing:
-                NavigationLink(destination: ProfileView(user: User(username: "UserLogin", userToken: "someToken"))) {
-                    Image(systemName: "person.circle")
-                        .foregroundColor(.white)
-                }
+                                    NavigationLink(destination: ProfileView(user: User(username: "UserLogin", userToken: "someToken"))) {
+                Image(systemName: "person.circle")
+                    .foregroundColor(.white)
+            }
             )
         }
     }
