@@ -24,13 +24,15 @@ class RoomViewModel: ObservableObject {
             return
         }
         
-        let parameters: [String: Any] = [
+        var parameters: [String: Any] = [
             "adminNickname": currentUser.username,
-            "roomCode": roomCode,
             "gameStatus": "Not Started",
             "currentNumberOfChips": 0
         ]
-        
+        if roomCode != "" {
+            parameters["roomCode"] = roomCode
+        }
+
         guard let jsonData = try? JSONSerialization.data(withJSONObject: parameters) else {
             print("Failed to serialize parameters")
             return
