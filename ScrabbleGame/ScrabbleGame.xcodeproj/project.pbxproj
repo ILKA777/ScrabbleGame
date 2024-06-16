@@ -32,6 +32,7 @@
 		09BF633C2C1470D7009E2B18 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BF633B2C1470D7009E2B18 /* AuthViewModel.swift */; };
 		09BF633E2C147128009E2B18 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BF633D2C147128009E2B18 /* RegistrationView.swift */; };
 		09BF63402C14714A009E2B18 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BF633F2C14714A009E2B18 /* RegistrationViewModel.swift */; };
+		8CA149C62C1F19020058993A /* CreateRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA149C52C1F19020058993A /* CreateRoomView.swift */; };
 		8CEC6FE82C17A79D006BD28C /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC6FE72C17A79D006BD28C /* Consts.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		09BF633B2C1470D7009E2B18 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		09BF633D2C147128009E2B18 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		09BF633F2C14714A009E2B18 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		8CA149C52C1F19020058993A /* CreateRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomView.swift; sourceTree = "<group>"; };
 		8CEC6FE72C17A79D006BD28C /* Consts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -183,6 +185,7 @@
 			children = (
 				09BF63392C1470A3009E2B18 /* LoginView.swift */,
 				09BF63312C146FCB009E2B18 /* SplashScreenView.swift */,
+				8CA149C52C1F19020058993A /* CreateRoomView.swift */,
 				09BF63202C146A10009E2B18 /* ContentView.swift */,
 				09BF633D2C147128009E2B18 /* RegistrationView.swift */,
 				0928C88E2C19FBE100CBFF3F /* СhooseRoomView.swift */,
@@ -313,6 +316,7 @@
 				09BF633E2C147128009E2B18 /* RegistrationView.swift in Sources */,
 				0928C89F2C1A130400CBFF3F /* CustomCellView.swift in Sources */,
 				0928C89B2C1A0C5C00CBFF3F /* ProfileViewModel.swift in Sources */,
+				8CA149C62C1F19020058993A /* CreateRoomView.swift in Sources */,
 				09BF63402C14714A009E2B18 /* RegistrationViewModel.swift in Sources */,
 				0928C8952C1A00E000CBFF3F /* Room.swift in Sources */,
 				0928C8932C19FC4400CBFF3F /* JoinRoomView.swift in Sources */,

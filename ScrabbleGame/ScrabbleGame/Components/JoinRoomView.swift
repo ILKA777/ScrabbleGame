@@ -12,10 +12,3 @@ struct JoinRoomView: View {
         Text("Join Room View")
     }
 }
-
-struct CreateRoomView: View {
-    var body: some View {
-        Text("Create Room View")
-    }
-}
-

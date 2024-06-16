@@ -14,7 +14,7 @@ struct GameRoomView: View {
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
-        //NavigationView {
+//        NavigationView {
             ZStack {
                 Color.black.edgesIgnoringSafeArea(.all)
                 VStack {
@@ -44,7 +44,8 @@ struct GameRoomView: View {
                         }
                     }
                 )
+                .navigationBarBackButtonHidden(true)
             }
-        }
-    //}
+//        }
+    }
 }

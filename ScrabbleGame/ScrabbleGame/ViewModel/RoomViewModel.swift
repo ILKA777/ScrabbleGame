@@ -14,7 +14,64 @@ class RoomViewModel: ObservableObject {
     @Published var id: UUID?
     @Published var roomCode = ""
     @Published var selectedRoom: Room?
+    @Published var isPrivate = false
 
+    func createRoom(completion: @escaping (Room?) -> Void) {
+        let currentUser = UserManager.shared.getCurrentUser()
+        
+        guard let url = URL(string: "\(Constants.serverURL)/gameRooms") else {
+            print("Invalid URL")
+            return
+        }
+        
+        let parameters: [String: Any] = [
+            "adminNickname": currentUser.username,
+            "roomCode": roomCode,
+            "gameStatus": "Not Started",
+            "currentNumberOfChips": 0
+        ]
+        
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: parameters) else {
+            print("Failed to serialize parameters")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(Constants.serverApiKey, forHTTPHeaderField: "ApiKey")
+        request.setValue("Bearer \(currentUser.userToken!)", forHTTPHeaderField: "Authorization")
+        request.httpBody = jsonData
+        
+        URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
+           DispatchQueue.main.async {
+               guard let data = data, error == nil else {
+                   print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                   completion(nil)
+                   return
+               }
+               
+               if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                   let decodedRoom = try? JSONDecoder().decode(Room.self, from: data)
+                   completion(decodedRoom)
+                   
+                   if let room = decodedRoom {
+                       self?.joinRoom(id: room.id, code: self?.roomCode)
+                   }
+               } else {
+                   print("HTTP Error: \(response.debugDescription)")
+                   if let errorString = String(data: data, encoding: .utf8) {
+                       print("Error response text: \(errorString)")
+                   } else {
+                       print("Unable to convert data to string")
+                   }
+                   completion(nil)
+               }
+
+           }
+       }.resume()
+    }
+    
     func getRoom(id: UUID, completion: @escaping (Room?) -> Void) {
         guard let url = URL(string: "\(Constants.serverURL)/gameRooms/\(id)") else {
             print("Invalid URL")

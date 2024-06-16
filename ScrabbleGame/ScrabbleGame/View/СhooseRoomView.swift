@@ -164,7 +164,9 @@ struct ChooseRoomView: View {
                     .padding()
                 }
 
-                NavigationLink(destination: GameRoomView(viewModel: viewModel, roomId: UUID(uuidString: inputID) ?? UUID()), isActive: $isGameRoomPresented) {
+                NavigationLink(
+                    destination: GameRoomView(viewModel: viewModel, roomId: UUID(uuidString: inputID) ?? UUID()),
+                    isActive: $isGameRoomPresented) {
                     EmptyView()
                 }
             }
