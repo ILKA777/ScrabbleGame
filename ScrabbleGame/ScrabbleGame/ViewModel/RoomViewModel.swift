@@ -75,15 +75,14 @@ class RoomViewModel: ObservableObject {
     }
 
     func changeRoomStatus(id: UUID, status: String) {
-        guard let url = URL(string: "\(Constants.serverURL)/gameRooms/\(id)/status") else {
-            print("Invalid URL")
-            return
+        var gameStatus = "run";
+        
+        if status == "Pause" {
+            gameStatus = "pause";
         }
         
-        let parameters: [String: Any] = ["status": status]
-        
-        guard let jsonData = try? JSONSerialization.data(withJSONObject: parameters) else {
-            print("Failed to serialize parameters")
+        guard let url = URL(string: "\(Constants.serverURL)/gameRooms/\(id)/\(gameStatus)") else {
+            print("Invalid URL")
             return
         }
         
@@ -94,7 +93,6 @@ class RoomViewModel: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue(Constants.serverApiKey, forHTTPHeaderField: "ApiKey")
         request.setValue("Bearer \(currentUser.userToken!)", forHTTPHeaderField: "Authorization")
-        request.httpBody = jsonData
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {

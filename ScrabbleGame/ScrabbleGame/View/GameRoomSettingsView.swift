@@ -30,6 +30,7 @@ struct GameRoomSettingsView: View {
                 if userRole == "admin" {
                     Button(action: {
                         viewModel.changeRoomStatus(id: roomId, status: roomStatus == "Running" ? "Pause" : "Running")
+                        roomStatus = roomStatus == "Running" ? "Pause" : "Running"
                     }) {
                         Text(roomStatus == "Running" ? "Пауза" : "Начать")
                             .padding()
