@@ -17,7 +17,8 @@ class RoomViewModel: ObservableObject {
     @Published var isPrivate = false
     @Published var roomStatus: String = "Not Started"
     @Published var userRole: String = "user"
-    
+    @Published var currentNumberOfChips = 7
+
     func createRoom(completion: @escaping (Room?) -> Void) {
         let currentUser = UserManager.shared.getCurrentUser()
         
@@ -29,7 +30,7 @@ class RoomViewModel: ObservableObject {
         var parameters: [String: Any] = [
             "adminNickname": currentUser.username,
             "gameStatus": "Not Started",
-            "currentNumberOfChips": 0
+            "currentNumberOfChips": currentNumberOfChips
         ]
         if roomCode != "" {
             parameters["roomCode"] = roomCode

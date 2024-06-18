@@ -22,6 +22,8 @@ struct GameRoomView: View {
                     .font(.largeTitle)
                     .foregroundColor(.white)
                 Spacer()
+                Text("Ваше количество фишек: \(viewModel.currentNumberOfChips)")
+                    .foregroundColor(.white)
             }
             .navigationBarTitle("Игровая комната", displayMode: .inline)
             .navigationBarItems(leading: Button(action: {
@@ -33,7 +35,7 @@ struct GameRoomView: View {
                     .foregroundColor(.red)
             })
             .navigationBarItems(trailing:
-                                    NavigationLink(destination: GameRoomSettingsView(viewModel: viewModel, roomId: roomId), isActive: $isMainViewPresented) {
+                NavigationLink(destination: GameRoomSettingsView(viewModel: viewModel, roomId: roomId), isActive: $isMainViewPresented) {
                 Button(action: {
                     isMainViewPresented = true
                 }) {
